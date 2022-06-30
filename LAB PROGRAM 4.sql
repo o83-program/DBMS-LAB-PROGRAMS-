@@ -32,3 +32,4 @@ select c.cname from class c where room='r1' or c.cname in(select e.cname from en
 
 select distinct f.fname from faculty f where (select count(e.snum) from class c,enrolled e where c.cname=e.cname and c.fid=f.fid)<5;
 select distinct s.sname from student s where s.snum not in(select e.snum from enrolled e);
+select distinct s.sname from student s where s.snum in(select e1.snum from enrolled e1,enrolled e2,class c1,class c2 where e1.snum=e2.snum and e1.cname<>e2.cname and e1.cname=c1.cname and e2.cname=c2.cname and c1.meeting=c2.meeting);
